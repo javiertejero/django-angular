@@ -89,9 +89,10 @@ djng_forms_module.directive('ngModel', function() {
 	}
 
 	return {
+		priority: 1,  // Link will be executed later than original ngModel's
 		restrict: 'A',
 		require: ['ngModel', '^?form'],
-		link: function(scope, element, attrs, ctrls) {
+		link: function postLink(scope, element, attrs, ctrls) {
 			var field = angular.isElement(element) ? element[0] : null;
 			var modelCtrl = ctrls[0], formCtrl = ctrls[1] || null;
 			if (!field || !formCtrl)

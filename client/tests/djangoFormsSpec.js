@@ -30,6 +30,10 @@ describe('unit tests for module ng.django.forms', function() {
 				compileForm($compile, scope, 'value="john@example.net"');
 				expect(scope.valid_form.email_field.$viewValue).toBe(undefined);
 			}));
+			it('the filled input fields should remain pristine', inject(function($compile) {
+				compileForm($compile, scope, 'value="john@example.net"');
+				expect(scope.valid_form.email_field.$pristine).toBe(true);
+			}));
 		});
 	});
 
@@ -56,6 +60,10 @@ describe('unit tests for module ng.django.forms', function() {
 			it('the view value of filled input fields should remain as is', inject(function($compile) {
 				compileForm($compile, scope, 'value="john@example.net"');
 				expect(scope.valid_form.email_field.$viewValue).toBe('john@example.net');
+			}));
+			it('the filled input fields should remain pristine', inject(function($compile) {
+				compileForm($compile, scope, 'value="john@example.net"');
+				expect(scope.valid_form.email_field.$pristine).toBe(true);
 			}));
 		});
 
