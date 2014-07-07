@@ -18,9 +18,9 @@ def _input_required(field):
 
 def _min_max_length_errors(field):
     errors = []
-    if hasattr(field, 'min_length') and field.min_length > 0:
+    if getattr(field, 'min_length', None):
         field.widget.attrs['ng-minlength'] = field.min_length
-    if hasattr(field, 'max_length') and field.max_length > 0:
+    if getattr(field, 'max_length', None):
         field.widget.attrs['ng-maxlength'] = field.max_length
     for item in field.validators:
         if getattr(item, 'code', None) == 'min_length':
